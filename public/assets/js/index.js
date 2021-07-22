@@ -4,7 +4,7 @@ let saveNoteBtn;
 let newNoteBtn;
 let noteList;
 
-if (window.location.pathname === '/notes') {
+if (window.location.pathname === '/notes.html') {
   noteTitle = document.querySelector('.note-title');
   noteText = document.querySelector('.note-textarea');
   saveNoteBtn = document.querySelector('.save-note');
@@ -31,6 +31,11 @@ const getNotes = () =>
     headers: {
       'Content-Type': 'application/json',
     },
+  // })
+  // .then((response) => response.json())
+  // .then((data) => data)
+  // .catch((error) => {
+  //   console.error('Error:' , error);
   });
 
 const saveNote = (note) =>
@@ -40,7 +45,12 @@ const saveNote = (note) =>
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(note),
-  });
+  })
+  .then((response) => response.json())
+  .then((data) => {
+    alert(data);
+    handleNoteSave()
+  })
 
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
@@ -161,12 +171,13 @@ const renderNoteList = async (notes) => {
   jsonNotes.forEach((note) => {
     const li = createLi(note.title);
     li.dataset.note = JSON.stringify(note);
-
     noteListItems.push(li);
   });
 
-  if (window.location.pathname === '/notes') {
-    noteListItems.forEach((note) => noteList[0].append(note));
+  if (window.location.pathname === '/notes.html') {
+    noteListItems.forEach((note) => {
+      noteList[0].append(note)
+    });
   }
 };
 

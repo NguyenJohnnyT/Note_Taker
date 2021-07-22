@@ -1,15 +1,15 @@
 const express = require('express');
-const app = express();
-const PORT = process.env.PORT || 3001
 const path = require('path');
 const api = require('./routes/index.js')
-const database = require('./db/db.json');
+// const database = require('./db/db.json');
 
+const PORT = process.env.PORT || 3001
 
+const app = express();
 
 api.use(express.json());
 app.use(express.urlencoded({ extended: true}));
-api.use('/api', api)
+app.use('/api', api)
 
 app.use(express.static('public'));
 

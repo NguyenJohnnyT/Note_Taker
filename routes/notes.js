@@ -3,12 +3,12 @@ const {readFromFile, readAndAppend} = require('../helpers/noteFxns.js');
 
 // GET Route for retrieving ALL! the notes
 notes.get('/', (req, res) => {
-    const data = await noteFxns.readFile('./db/db.json');
-    res.json(JSON.parse(data));
-})
+    readFromFile('./db/db.json')
+    .then((data) => res.json(JSON.parse(data)));
+});
 
 // POST Route for a new note
-notes.post('/notes', (req, res) => {
+notes.post('/', (req, res) => {
     console.log(req.body);
 
     const { title, text } = req.body;
@@ -25,3 +25,5 @@ notes.post('/notes', (req, res) => {
         res.error('Error in adding tip');
     }
 })
+
+module.exports = notes;
