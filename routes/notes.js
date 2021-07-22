@@ -9,7 +9,7 @@ notes.get('/', (req, res) => {
 
 // POST Route for a new note
 notes.post('/', (req, res) => {
-    console.log(req.body);
+    console.log('req.body', req.body);
 
     const { title, text } = req.body;
 
@@ -22,7 +22,7 @@ notes.post('/', (req, res) => {
         readAndAppend(newNote, './db/db.json');
         res.json('Note added successfully 😂');
     } else {
-        res.error('Error in adding tip');
+        res.error('Error in adding note');
     }
 })
 
