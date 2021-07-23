@@ -1,4 +1,4 @@
-  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]
+  ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
   # Note Taker
   Take notes on this app!
   
